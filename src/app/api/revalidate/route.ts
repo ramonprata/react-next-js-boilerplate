@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import { revalidatePath } from "next/cache";
+import { revalidateProducts } from "../../actions";
 
 export async function POST(req: NextRequest) {
   const secret = req.nextUrl.searchParams.get("secret");
@@ -15,6 +15,6 @@ export async function POST(req: NextRequest) {
   }
 
   // opcional: inspecione body do webhook (req.json()) para verificar se é product
-  revalidatePath("/products");
+  revalidateProducts();
   return NextResponse.json({ ok: true, revalidated: "/products" });
 }
