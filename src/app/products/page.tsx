@@ -1,6 +1,6 @@
 // import { storyblokApi } from "@/lib/storyblok";
 
-export const revalidate = 60 * 3; // ISR 3 min
+export const revalidate = 180; // ISR 3 min
 
 type Product = {
   id: number;
