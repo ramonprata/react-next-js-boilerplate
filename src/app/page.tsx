@@ -16,7 +16,11 @@ export default function Home() {
 
         <h1>POC E-commerce</h1>
         <p>
-          Home (SSG). Vá para <a href="/products">/products</a> para ver ISR.
+          Home (SSG). Go to{" "}
+          <a style={{ fontSize: 20, color: "#5ce9ef" }} href="/products">
+            /products
+          </a>{" "}
+          to see ISR.
         </p>
       </main>
     </div>

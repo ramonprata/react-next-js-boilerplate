@@ -31,20 +31,20 @@ async function getMockProducts(): Promise<Product[]> {
       res([
         {
           id: 1,
-          name: "Produto 1",
+          name: "Product 1",
           price: 100,
           image: {
             filename: "/images/placeholder-image.jpg",
-            alt: "Produto 1",
+            alt: "Product 1",
           },
         },
         {
           id: 2,
-          name: "Produto 2",
+          name: "Product 2",
           price: 200,
           image: {
             filename: "/images/placeholder-image.jpg",
-            alt: "Produto 2",
+            alt: "Product 2",
           },
         },
       ]);
@@ -100,7 +100,12 @@ export default async function ProductsPage() {
               />
             )}
             <h3 style={{ marginTop: 12 }}>{p.name}</h3>
-            <p style={{ fontWeight: 600 }}>R$ {p.price.toFixed(2)}</p>
+            <p style={{ fontWeight: 600 }}>
+              {new Intl.NumberFormat("en-US", {
+                style: "currency",
+                currency: "USD",
+              }).format(p.price)}
+            </p>
           </article>
         ))}
       </div>
