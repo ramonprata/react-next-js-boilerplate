@@ -9,8 +9,6 @@
     "lint": "eslint"
   },
   "dependencies": {
-    "@storyblok/js": "^4.2.4",
-    "@storyblok/react": "^5.4.4",
     "next": "15.5.0",
     "react": "19.1.0",
     "react-dom": "19.1.0"
