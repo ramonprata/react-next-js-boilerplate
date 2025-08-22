@@ -3,24 +3,13 @@ import { revalidateProducts } from "../../actions";
 
 enum Event {
   PUBLISHED = "published",
-  UNPUBLISHED = "unpublished",
-  DELETED = "deleted",
 }
 export interface StoryblokWebhook {
-  event: Event | string; // outros eventos possíveis
-  story: {
-    id: number;
-    name: string;
-    slug: string;
-    full_slug: string;
-    content: Record<string, unknown>; // conteúdo do story (JSON dinâmico)
-  };
-  user: {
-    id: number;
-    name: string;
-  };
+  action: Event | string;
+  text: string;
   space_id: number;
-  timestamp: number;
+  story_id: number;
+  full_slug: string;
 }
 
 export async function POST(req: NextRequest) {
@@ -35,17 +24,19 @@ export async function POST(req: NextRequest) {
     }
 
     const body: StoryblokWebhook = await req.json();
+    console.log("Ramon - fileName - line 38 - data", body);
     const shouldRevalidate =
-      body.event === Event.PUBLISHED &&
-      body.story.full_slug.startsWith("products/");
+      body.action === Event.PUBLISHED && body.full_slug.startsWith("products/");
 
     if (!shouldRevalidate) {
       return NextResponse.json({ ok: true, message: "Event ignored" });
     }
 
     revalidateProducts();
+    console.log("Ramon - fileName - line 36 - passou!!!!");
     return NextResponse.json({ ok: true, revalidated: "/products" });
   } catch (error) {
+    console.log("Ramon - fileName - line 49 - error", error);
     return NextResponse.json({ ok: false, error }, { status: 500 });
   }
 }
