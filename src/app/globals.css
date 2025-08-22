@@ -40,3 +40,24 @@ a {
     color-scheme: dark;
   }
 }
+
+.root-layout {
+  margin: 0 auto;
+  padding: 0 16px;
+
+  height: 100vh;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  border-left: none;
+  border-right: none;
+}
+
+/* Sobrescrevendo apenas max-width e border para telas maiores */
+@media (min-width: 768px) {
+  .root-layout {
+    max-width: 50%;
+    border-left: 1px dashed #eee;
+    border-right: 1px dashed #eee;
+  }
+}

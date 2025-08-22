@@ -1,58 +1,48 @@
 // import { storyblokApi } from "@/lib/storyblok";
 
+import { getStoryblokApi } from "@storyblok/react";
+import { PRODUCTS_MOCK } from "./mock";
+
 // export const revalidate = 180; // ISR 3 min
 
 type Product = {
-  id: number;
+  id: string;
   name: string;
+  description: string;
   price: number;
-  image?: { filename: string; alt?: string };
+  image?: { filePath: string; alt?: string };
 };
 
-// async function getProducts(): Promise<Product[]> {
-//   const sb = storyblokApi();
-//   const { data } = await sb.get("cdn/stories", {
-//     version: "published",
-//     content_type: "product",
-//     per_page: 100,
-//     sort_by: "first_published_at:desc",
-//   });
-//   return (data.stories || []).map((s: any) => ({
-//     id: s.id,
-//     name: s.content?.name ?? s.name,
-//     price: Number(s.content?.price ?? 0),
-//     image: s.content?.image,
-//   }));
-// }
+async function getProducts(): Promise<Product[]> {
+  const client = getStoryblokApi();
+  const { data } = await client.getStories({
+    starts_with: "products/",
+    version: "published",
+  });
+  return data.stories.map((story) => {
+    const content = story.content;
+    return {
+      ...content,
+      image: story.content.image
+        ? {
+            filePath: story.content.image.filename,
+            alt: story.content.image.alt,
+          }
+        : undefined,
+    } as Product;
+  });
+}
 
 async function getMockProducts(): Promise<Product[]> {
   return new Promise((res) => {
     setTimeout(() => {
-      res([
-        {
-          id: 1,
-          name: "Product 1",
-          price: 100,
-          image: {
-            filename: "/images/placeholder-image.jpg",
-            alt: "Product 1",
-          },
-        },
-        {
-          id: 2,
-          name: "Product 2",
-          price: 200,
-          image: {
-            filename: "/images/placeholder-image.jpg",
-            alt: "Product 2",
-          },
-        },
-      ]);
+      res(PRODUCTS_MOCK as Product[]);
     }, 3000);
   });
 }
+
 export default async function ProductsPage() {
-  const products = await getMockProducts();
+  const products = await getProducts();
 
   return (
     <main style={{ padding: 24 }}>
@@ -83,13 +73,13 @@ export default async function ProductsPage() {
       >
         {products.map((p) => (
           <article
-            key={p.id}
+            key={p.name}
             style={{ border: "1px solid #eee", borderRadius: 12, padding: 16 }}
           >
-            {p.image?.filename && (
+            {p.image?.filePath && (
               // eslint-disable-next-line @next/next/no-img-element
               <img
-                src={p.image.filename}
+                src={p.image.filePath}
                 alt={p.image.alt ?? p.name}
                 style={{
                   width: "100%",
@@ -99,13 +89,15 @@ export default async function ProductsPage() {
                 }}
               />
             )}
-            <h3 style={{ marginTop: 12 }}>{p.name}</h3>
-            <p style={{ fontWeight: 600 }}>
-              {new Intl.NumberFormat("en-US", {
-                style: "currency",
-                currency: "USD",
-              }).format(p.price)}
-            </p>
+            <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
+              <h3 style={{ marginTop: 12 }}>{p.name}</h3>
+              <p style={{ fontWeight: 600 }}>
+                {new Intl.NumberFormat("en-US", {
+                  style: "currency",
+                  currency: "USD",
+                }).format(p.price)}
+              </p>
+            </div>
           </article>
         ))}
       </div>

@@ -2,20 +2,51 @@ import { NextRequest, NextResponse } from "next/server";
 import { revalidatePath } from "next/cache";
 import { revalidateProducts } from "../../actions";
 
-export async function POST(req: NextRequest) {
-  const secret = req.nextUrl.searchParams.get("secret");
-  console.log(
-    "Ramon - fileName - line 6 - process.env.REVALIDATE_SECRET",
-    process.env.REVALIDATE_SECRET
-  );
-  if (secret !== process.env.REVALIDATE_SECRET) {
-    return NextResponse.json(
-      { ok: false, message: "Invalid secret" },
-      { status: 401 }
-    );
-  }
+enum Event {
+  PUBLISHED = "published",
+  UNPUBLISHED = "unpublished",
+  DELETED = "deleted",
+}
+export interface StoryblokWebhook {
+  event: Event | string; // outros eventos possíveis
+  story: {
+    id: number;
+    name: string;
+    slug: string;
+    full_slug: string;
+    content: Record<string, unknown>; // conteúdo do story (JSON dinâmico)
+  };
+  user: {
+    id: number;
+    name: string;
+  };
+  space_id: number;
+  timestamp: number;
+}
 
-  // opcional: inspecione body do webhook (req.json()) para verificar se é product
-  revalidateProducts();
-  return NextResponse.json({ ok: true, revalidated: "/products" });
+export async function POST(req: NextRequest) {
+  try {
+    const secret = req.nextUrl.searchParams.get("secret");
+
+    if (secret !== process.env.REVALIDATE_SECRET) {
+      return NextResponse.json(
+        { ok: false, message: "Invalid secret" },
+        { status: 401 }
+      );
+    }
+
+    const body: StoryblokWebhook = await req.json();
+    const shouldRevalidate =
+      body.event === Event.PUBLISHED &&
+      body.story.full_slug.startsWith("products/");
+
+    if (!shouldRevalidate) {
+      return NextResponse.json({ ok: true, message: "Event ignored" });
+    }
+
+    revalidateProducts();
+    return NextResponse.json({ ok: true, revalidated: "/products" });
+  } catch (error) {
+    return NextResponse.json({ ok: false, error }, { status: 500 });
+  }
 }
