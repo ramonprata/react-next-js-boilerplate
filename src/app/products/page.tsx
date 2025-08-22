@@ -1,7 +1,7 @@
 // import { storyblokApi } from "@/lib/storyblok";
 
 import { getStoryblokApi } from "@storyblok/react";
-import { PRODUCTS_MOCK } from "./mock";
+// import { PRODUCTS_MOCK } from "./mock";
 
 // export const revalidate = 180; // ISR 3 min
 
@@ -33,13 +33,13 @@ async function getProducts(): Promise<Product[]> {
   });
 }
 
-async function getMockProducts(): Promise<Product[]> {
-  return new Promise((res) => {
-    setTimeout(() => {
-      res(PRODUCTS_MOCK as Product[]);
-    }, 3000);
-  });
-}
+// async function getMockProducts(): Promise<Product[]> {
+//   return new Promise((res) => {
+//     setTimeout(() => {
+//       res(PRODUCTS_MOCK as Product[]);
+//     }, 3000);
+//   });
+// }
 
 export default async function ProductsPage() {
   const products = await getProducts();

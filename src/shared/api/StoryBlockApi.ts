@@ -19,17 +19,17 @@ class StoryblokService {
   }
 
   // Buscar uma story
-  public async getStory(slug: string, params: Record<string, any> = {}) {
+  public async getStory(slug: string, params: Record<string, unknown> = {}) {
     return this.storyblokApi.get(`cdn/stories/${slug}`, params);
   }
 
   // Buscar várias stories
-  public async getStories(params: Record<string, any> = {}) {
+  public async getStories(params: Record<string, unknown> = {}) {
     return this.storyblokApi.get("cdn/stories", params);
   }
 
   // Buscar assets
-  public async getAssets(params: Record<string, any> = {}) {
+  public async getAssets(params: Record<string, unknown> = {}) {
     return this.storyblokApi.get("cdn/assets", params);
   }
 }
