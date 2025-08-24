@@ -5,7 +5,6 @@ const ProductsLoading = () => {
   return (
     <div className={styles.loadingWrapper}>
       <SourceLoader />
-      <p>Loading Products...</p>
     </div>
   );
 };

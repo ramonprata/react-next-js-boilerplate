@@ -1,0 +1,26 @@
+.navigationContainer {
+  width: 100%;
+  border-top: 1px solid var(--color-border);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.tablist {
+  display: flex;
+}
+
+.tab {
+  display: flex;
+  flex-direction: column;
+  padding: 1rem;
+  background: var(--tab-background);
+  cursor: pointer;
+  width: 100%;
+  justify-content: space-evenly;
+  align-items: center;
+  text-transform: uppercase;
+}
+
+.active {
+  background: var(--tab-active-background);
+  color: var(--tab-active-color);
+}

@@ -3,6 +3,8 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./global.css";
 import { storyblokInit, apiPlugin } from "@storyblok/react/rsc";
 
+import AppWrapper from "./views/AppWrapper";
+
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
@@ -31,7 +33,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${geistSans.variable} ${geistMono.variable}`}>
-        <div className="root-layout">{children}</div>
+        <AppWrapper>{children}</AppWrapper>
       </body>
     </html>
   );

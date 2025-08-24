@@ -1,10 +1,15 @@
 :root {
+  --header-height: 64px;
+  --navigation-height: 52px;
   --background: #ffffff;
   --foreground: #171717;
   --color-text: #111;
   --color-bg: #fff;
   --color-border: #ccc;
   --color-link: #39859c;
+  --tab-background: #ffffff;
+  --tab-active-background: #39859c;
+  --tab-active-color: white;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -15,6 +20,9 @@
     --color-bg: #111;
     --color-border: #555;
     --color-link: #78bfd4;
+    --tab-background: #282828;
+    --tab-active-background: #39859c;
+    --tab-active-color: white;
   }
 }
 
@@ -49,30 +57,8 @@ a {
   }
 }
 
-.root-layout {
-  margin: 0 auto;
-  padding: 0 16px;
-
-  height: 100vh;
-  overflow-y: auto;
-  display: flex;
-  flex-direction: column;
-  border-left: none;
-  border-right: none;
-}
-
-/* Sobrescrevendo apenas max-width e border para telas maiores */
-@media (min-width: 768px) {
-  .root-layout {
-    width: 50%;
-    max-width: 500px;
-    border-left: 1px dashed #eee;
-    border-right: 1px dashed #eee;
-  }
-}
-
 @media (prefers-color-scheme: dark) {
-  * {
-    border-color: yellow;
+  .logo {
+    filter: invert(1);
   }
 }

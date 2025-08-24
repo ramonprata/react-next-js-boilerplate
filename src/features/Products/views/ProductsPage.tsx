@@ -1,4 +1,5 @@
 import productsManager from "../services";
+import FavoritesCounter from "./FavoritesCounter";
 import ProductsList from "./ProductsList";
 import styles from "./styles/ProductsPage.module.scss";
 
@@ -13,10 +14,12 @@ async function ProductsPage() {
   return (
     <main>
       <section className={styles.headerSection}>
-        <h3>Products (ISR)</h3>
-        <p>Updated at: {lastUpdate}</p>
+        <div>
+          <h3>Products </h3>
+          <p>{lastUpdate}</p>
+        </div>
+        <FavoritesCounter />
       </section>
-
       <ProductsList products={products} />
     </main>
   );

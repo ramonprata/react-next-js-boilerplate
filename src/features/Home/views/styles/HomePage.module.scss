@@ -4,7 +4,6 @@
   justify-content: center;
   align-items: center;
   gap: 24px;
-  padding: 2rem 0;
 
   section {
     border: 1px solid var(--color-border);
@@ -26,10 +25,4 @@
   display: flex;
   align-items: center;
   justify-content: center;
-}
-
-@media (prefers-color-scheme: dark) {
-  .logo {
-    filter: invert(1);
-  }
 }
