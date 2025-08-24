@@ -1,0 +1,35 @@
+.main {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 24px;
+  padding: 2rem 0;
+
+  section {
+    border: 1px solid var(--color-border);
+    border-radius: 12px;
+    padding: 16px;
+    width: 90%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 200px;
+  }
+}
+
+.horizontalScrollSection {
+  width: 100%;
+  height: fit-content;
+  min-height: 300px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@media (prefers-color-scheme: dark) {
+  .logo {
+    filter: invert(1);
+  }
+}

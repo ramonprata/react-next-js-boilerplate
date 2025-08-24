@@ -1,8 +1,8 @@
 // storyblok.ts
 import StoryblokClient from "storyblok-js-client";
 
-class StoryblokService {
-  private static instance: StoryblokService;
+class CMSApi {
+  private static instance: CMSApi;
   private storyblokApi: StoryblokClient;
 
   private constructor() {
@@ -11,27 +11,24 @@ class StoryblokService {
     });
   }
 
-  public static getInstance(): StoryblokService {
-    if (!StoryblokService.instance) {
-      StoryblokService.instance = new StoryblokService();
+  public static getInstance(): CMSApi {
+    if (!CMSApi.instance) {
+      CMSApi.instance = new CMSApi();
     }
-    return StoryblokService.instance;
+    return CMSApi.instance;
   }
 
-  // Buscar uma story
   public async getStory(slug: string, params: Record<string, unknown> = {}) {
     return this.storyblokApi.get(`cdn/stories/${slug}`, params);
   }
 
-  // Buscar várias stories
   public async getStories(params: Record<string, unknown> = {}) {
     return this.storyblokApi.get("cdn/stories", params);
   }
 
-  // Buscar assets
   public async getAssets(params: Record<string, unknown> = {}) {
     return this.storyblokApi.get("cdn/assets", params);
   }
 }
 
-export default StoryblokService;
+export default CMSApi;
