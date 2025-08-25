@@ -27,7 +27,7 @@ export class ProductsRepository implements IProductRepository {
     return new Promise((resolve) => {
       setTimeout(() => {
         resolve(PRODUCTS_MOCK);
-      }, 1000);
+      }, 2000);
     });
   }
 
@@ -36,7 +36,7 @@ export class ProductsRepository implements IProductRepository {
     return new Promise((resolve) => {
       setTimeout(() => {
         resolve(HIGHLIGHTED_PRODUCTS_MOCK);
-      }, 5000);
+      }, 2000);
     });
   }
 }

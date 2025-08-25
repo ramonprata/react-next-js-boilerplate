@@ -1,5 +1,4 @@
 import { Suspense } from "react";
-import Image from "next/image";
 import { SourceLoader } from "@shared/components";
 import { HighlightedProducts } from "../../Products";
 import styles from "./styles/HomePage.module.scss";

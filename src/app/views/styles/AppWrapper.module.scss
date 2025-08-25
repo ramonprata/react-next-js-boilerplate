@@ -1,5 +1,5 @@
 .container {
-  height: 100vh;
+  height: 100dvh;
   overflow-y: auto;
   position: relative;
   margin: 0;
@@ -42,6 +42,7 @@
 
 .content {
   padding: 1rem;
-  height: calc(100vh - (var(--header-height) + var(--navigation-height)));
+  height: calc(100dvh - (var(--header-height) + var(--navigation-height)));
   overflow-y: auto;
+  padding-bottom: 2rem;
 }

@@ -31,7 +31,9 @@ const slice = (set: SetCallback<IProductsInitialState>) => ({
 
 export type TProductsActions = ReturnType<typeof actions>;
 
-export default {
+const productsSliceStore = {
   slice,
   initialState,
 };
+
+export default productsSliceStore;
