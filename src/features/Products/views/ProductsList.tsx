@@ -12,7 +12,7 @@ const ProductsList = ({ products }: IProductsListProps) => {
   return (
     <div className={styles.productsList}>
       {products.map((p) => (
-        <ProductCard key={p.id} product={p} />
+        <ProductCard key={p.name} product={p} />
       ))}
     </div>
   );

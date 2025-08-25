@@ -11,6 +11,12 @@ const nextConfig: NextConfig = {
         port: "",
         pathname: "/**",
       },
+      {
+        protocol: "https",
+        hostname: "a.storyblok.com",
+        port: "",
+        pathname: "/**",
+      },
     ],
   },
   async headers() {

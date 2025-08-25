@@ -1,9 +1,11 @@
 export interface IProductDto {
-  id: string;
-  name: string;
-  description: string;
-  price: number;
-  image?: { filePath: string; alt?: string };
+  content: {
+    id: string;
+    name: string;
+    description: string;
+    price: number;
+    image?: { filename: string; alt?: string };
+  };
 }
 
 export interface IProductView {

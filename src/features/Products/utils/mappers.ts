@@ -3,14 +3,14 @@ import { TProductsMappers } from "../types/TProductsMappers";
 
 const transformProducts = (products: IProductDto[]): IProductView[] => {
   return products.map((product) => ({
-    ...product,
+    ...product.content,
     price: Intl.NumberFormat("en-US", {
       style: "currency",
       currency: "USD",
-    }).format(product.price),
+    }).format(product.content.price),
     image: {
-      filePath: product.image?.filePath ?? "/placeholder-image.jpg",
-      alt: product.image?.alt ?? product.name,
+      filePath: product.content.image?.filename ?? "/placeholder-image.jpg",
+      alt: product.content.image?.alt ?? product.content.name,
     },
   }));
 };
