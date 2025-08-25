@@ -1,16 +1,3 @@
-const LoadingProducts = () => {
-  return (
-    <div
-      style={{
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "center",
-        height: "100vh",
-      }}
-    >
-      <h2>Loading Products...</h2>
-    </div>
-  );
-};
+import { ProductsLoading } from "@features/Products";
 
-export default LoadingProducts;
+export default ProductsLoading;

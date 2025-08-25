@@ -1,0 +1,39 @@
+.card {
+  border: 1px solid var(--color-border);
+  border-radius: 12px;
+  padding: 16px;
+  min-width: 280px;
+  min-height: 260px;
+}
+
+.productImageWrapper {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 3 / 2;
+}
+
+.productImage {
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+.productInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+
+  h6 {
+    margin-top: 12px;
+    font-size: 16px;
+  }
+  p {
+    font-weight: 600;
+  }
+}
+
+.cartFooter {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 12px;
+}

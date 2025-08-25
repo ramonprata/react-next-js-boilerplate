@@ -1,12 +1,28 @@
 :root {
+  --header-height: 64px;
+  --navigation-height: 52px;
   --background: #ffffff;
   --foreground: #171717;
+  --color-text: #111;
+  --color-bg: #fff;
+  --color-border: #ccc;
+  --color-link: #39859c;
+  --tab-background: #ffffff;
+  --tab-active-background: #39859c;
+  --tab-active-color: white;
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0a0a0a;
+    --background: #282828;
     --foreground: #ededed;
+    --color-text: #eee;
+    --color-bg: #111;
+    --color-border: #555;
+    --color-link: #78bfd4;
+    --tab-background: #282828;
+    --tab-active-background: #39859c;
+    --tab-active-color: white;
   }
 }
 
@@ -38,5 +54,11 @@ a {
 @media (prefers-color-scheme: dark) {
   html {
     color-scheme: dark;
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  .logo {
+    filter: invert(1);
   }
 }

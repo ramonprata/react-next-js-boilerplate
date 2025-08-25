@@ -1,0 +1,12 @@
+.highlightedProducts {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  max-width: 100%;
+}
+
+.seeAllLink {
+  font-size: 16px;
+  color: var(--color-link);
+  text-decoration: none;
+}
