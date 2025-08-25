@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 import { HorizontalCardList } from "@shared/components";
 import productsManager from "../services";
 import ProductCard from "./ProductCard";
@@ -12,9 +14,9 @@ const HighlightedProducts = async () => {
   return (
     <div className={styles.highlightedProducts}>
       <HorizontalCardList cards={cards} />
-      <a className={styles.seeAllLink} href="/products">
+      <Link className={styles.seeAllLink} href="/products">
         See All Products
-      </a>
+      </Link>
     </div>
   );
 };
