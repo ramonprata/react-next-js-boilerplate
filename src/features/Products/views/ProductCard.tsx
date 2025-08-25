@@ -18,6 +18,8 @@ const ProductCard = ({ product }: IProductCardProps) => {
 
   const isFavorite = favoriteProducts.includes(product.id);
 
+  console.log("Ramon - fileName - line 21 - product", product);
+
   const handleClick = () => {
     if (isFavorite) {
       removeFromFavorites(product.id);

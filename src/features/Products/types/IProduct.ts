@@ -1,6 +1,6 @@
 export interface IProductDto {
   content: {
-    id: string;
+    _uid: string;
     name: string;
     description: string;
     price: number;
